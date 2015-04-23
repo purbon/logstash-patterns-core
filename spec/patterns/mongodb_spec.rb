@@ -56,4 +56,53 @@ describe "MONGO3_LOG" do
     end
   end
 
+  context "parsing '2015-04-23T06:57:28.256+0200 I JOURNAL  [journal writer] Journal writer thread started'" do
+    let(:value)      { "2015-04-23T06:57:28.256+0200 I JOURNAL  [journal writer] Journal writer thread started" }
+    subject(:groked) { grok_match(pattern, value) }
+
+    it "generates a timestamp field" do
+      expect(groked).to include("timestamp" => "2015-04-23T06:57:28.256+0200")
+    end
+
+    it "generates a severity field" do
+      expect(groked).to include("severity" => "I")
+    end
+
+    it "generates a component field" do
+      expect(groked).to include("component" => "JOURNAL")
+    end
+
+    it "generates a context field" do
+      expect(groked).to include("context" => "journal writer")
+    end
+
+    it "generates a message field" do
+      expect(groked["message"]).to include("Journal writer thread started")
+    end
+  end
+
+  context "parsing '2015-04-23T07:00:13.864+0200 I CONTROL  Ctrl-C signal'" do
+    let(:value)      { "2015-04-23T07:00:13.864+0200 I CONTROL  Ctrl-C signal" }
+    subject(:groked) { grok_match(pattern, value) }
+
+    it "generates a timestamp field" do
+      expect(groked).to include("timestamp" => "2015-04-23T07:00:13.864+0200")
+    end
+
+    it "generates a severity field" do
+      expect(groked).to include("severity" => "I")
+    end
+
+    it "generates a component field" do
+      expect(groked).to include("component" => "CONTROL")
+    end
+
+    it "does not generate a context field" do
+      expect(groked).not_to have_key("context")
+    end
+
+    it "generates a message field" do
+      expect(groked["message"]).to include("Ctrl-C signal")
+    end
+  end
 end
