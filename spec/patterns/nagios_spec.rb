@@ -12,7 +12,7 @@ describe "NAGIOSLOGLINE - CURRENT HOST STATE" do
   end
 
   it "matches a simple message" do
-    expect(subject).to match(value)
+    expect(value).to match(subject)
   end
 
   it "generates the nagios_epoch field" do
@@ -47,7 +47,7 @@ describe "NAGIOSLOGLINE - CURRENT SERVICE STATE" do
   end
 
   it "matches a simple message" do
-    expect(subject).to match(value)
+    expect(value).to match(subject)
   end
 
   it "generates the nagios_type field" do
@@ -90,7 +90,7 @@ describe "NAGIOSLOGLINE - TIMEPERIOD TRANSITION" do
   end
 
   it "matches a simple message" do
-    expect(subject).to match(value)
+    expect(value).to match(subject)
   end
 
   it "generates the nagios_type field" do
@@ -122,7 +122,7 @@ describe "NAGIOSLOGLINE - SERVICE ALERT" do
   end
 
   it "matches a simple message" do
-    expect(subject).to match(value)
+    expect(value).to match(subject)
   end
 
   it "generates the nagios_type field" do
@@ -165,7 +165,7 @@ describe "NAGIOSLOGLINE - SERVICE NOTIFICATION" do
   end
 
   it "matches a simple message" do
-    expect(subject).to match(value)
+    expect(value).to match(subject)
   end
 
   it "generates the nagios_type field" do
@@ -213,7 +213,7 @@ describe "NAGIOSLOGLINE - HOST NOTIFICATION" do
   end
 
   it "matches a simple message" do
-    expect(subject).to match(value)
+    expect(value).to match(subject)
   end
 
   it "generates the nagios_type field" do
